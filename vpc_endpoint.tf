@@ -3,7 +3,6 @@ resource "aws_vpc_endpoint" "s3" {
   service_name = "com.amazonaws.ap-south-1.s3"
   
 }
-
 # associate route table with VPC endpoint
 resource "aws_vpc_endpoint_route_table_association" "route_table_association" {
   route_table_id  = "${aws_route_table.My_VPC_route_table.id}"

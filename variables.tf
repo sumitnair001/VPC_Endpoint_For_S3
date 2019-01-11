@@ -15,8 +15,6 @@ variable "private_instance" {
 type = "string"  
 }
 
-
-
 variable "availabilityZone" {
         default = "ap-south-1b"
 }
@@ -32,28 +30,32 @@ variable "dnsHostNames" {
 variable "vpcCIDRblock" {
  default = "10.0.0.0/16"
 }
-variable "subnetCIDRblock" {
+variable "subnetCIDRblock" {          # for private subnet
         default = "10.0.0.0/24"
 }
-variable "subnetCIDRblock1" {
+variable "subnetCIDRblock1" {         # for public subnet
         default = "10.0.1.0/24"
 }
 variable "destinationCIDRblock" {
+        
         default = "0.0.0.0/0"
 }
 variable "ingressCIDRblockPriv" {
-        type = "list"
-        default = [ "0.0.0.0/0" ]
+        type = "string"
+        default = "10.0.1.0/24"
 }
-
 variable "ingressCIDRblockPub" {
-        type = "list"
-        default = [ "0.0.0.0/0" ]
+        type = "string"
+        default = "0.0.0.0/0" 
 }
 variable "mapPublicIP" {
         default = true
 }
 
 variable "bucket_name" {
+  type = "string"
+}
+
+variable "key_name" {
   type = "string"
 }

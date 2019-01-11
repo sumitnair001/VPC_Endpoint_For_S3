@@ -41,13 +41,13 @@ resource "aws_security_group" "My_VPC_Security_Group_Private" {
   name         = "My VPC Security Group Private"
   description  = "My VPC Security Group Private"
 ingress {
-    cidr_blocks = "${var.ingressCIDRblockPriv}"  
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    security_groups = ["${aws_security_group.My_VPC_Security_Group_Public.id}"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
   }
   egress {
-    cidr_blocks = "${var.ingressCIDRblockPriv}"  
+    cidr_blocks = ["0.0.0.0/0"]  
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -61,13 +61,13 @@ resource "aws_security_group" "My_VPC_Security_Group_Public" {
   name         = "My VPC Security Group Public"
   description  = "My VPC Security Group Public"
 ingress {
-    cidr_blocks = "${var.ingressCIDRblockPub}"  
+    cidr_blocks = ["${var.ingressCIDRblockPub}"]
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
   }
   egress {
-    cidr_blocks = "${var.ingressCIDRblockPub}"  
+    cidr_blocks = ["${var.ingressCIDRblockPub}"]
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
